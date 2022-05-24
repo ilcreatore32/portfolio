@@ -1,11 +1,12 @@
+import Layout from "./components/Layout/Layout";
 import "./App.css";
 
 function App() {
   return (
     <>
-      <div className="container">
-      
-      </div>
+      <Layout>
+        <h1>Hello World!</h1>
+      </Layout>
     </>
   );
 }
