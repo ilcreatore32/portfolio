@@ -1,11 +1,12 @@
 import Layout from "./components/Layout/Layout";
 import "./App.css";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <>
       <Layout>
-        <h1>Hello World!</h1>
+        <Outlet/>
       </Layout>
     </>
   );
