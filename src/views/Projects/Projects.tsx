@@ -1,18 +1,11 @@
 import { useEffect, useState } from "react";
 import Api from "../../api/configuration";
-import { Project as Skeleton } from "../../components/Animations/Skeleton/Skeleton";
-
-type Project = {
-  id: number;
-  name: string;
-  description: string;
-  html_url: string;
-  language: string;
-  topics: string[];
-};
+import { Link } from "react-router-dom";
+import Project from "../../types/Project";
+import { Projects as Skeleton } from "../../components/Animations/Skeleton/Skeleton";
 
 const Projects = () => {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState<Project[]>([]);
   const [error, setError] = useState("none");
   const [loading, setLoading] = useState(true);
 
@@ -33,6 +26,7 @@ const Projects = () => {
   useEffect(() => {
     getRepos();
   }, []);
+
   return (
     <>
       <div>
@@ -48,7 +42,9 @@ const Projects = () => {
               >
                 <div className="flex flex-col gap-3">
                   <p>{project.name}</p>
-                  <p className="text-sm text-justify md:text-base">{project.description}</p>
+                  <p className="text-sm text-justify md:text-base">
+                    {project.description}
+                  </p>
 
                   <div className="flex flex-row gap-2 items-center justify-start">
                     {project.language != null ? (
@@ -62,11 +58,11 @@ const Projects = () => {
                   </div>
                   <div className="flex flex-col sm:flex-row gap-2 justify-start items-start  sm:justify-between mt-3">
                     <button>
-                      <a href={project.html_url}>
+                      <Link to={`/portfolio/project/${project.name}`}>
                         <span className="text-blue-400 text-xs sm:text-sm">
                           Read about this project
                         </span>
-                      </a>
+                      </Link>
                     </button>
                     <div className="flex gap-2">
                       <button>
